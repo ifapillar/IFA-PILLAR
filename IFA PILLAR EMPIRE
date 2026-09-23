@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Ifá Pillar Tour</title>
+  
+  <!-- PWA & Mobile Meta Tags -->
+  <meta name="theme-color" content="#1b120c" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Ifá Tour" />
+  
+  <!-- Inline Web App Manifest -->
+  <link rel="manifest" href='data:application/manifest+json,{"name":"Ifá Pillar Tour App","short_name":"Ifá Tour","start_url":"/","display":"standalone","background_color":"#1b120c","theme_color":"#1b120c","description":"The 4 Pillars of Ifá Workshop App","icons":[{"src":"https://via.placeholder.com/192/c8963e/ffffff?text=Ifa","sizes":"192x192","type":"image/png"},{"src":"https://via.placeholder.com/512/c8963e/ffffff?text=Ifa","sizes":"512x512","type":"image/png"}]}' />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: #1b120c; color: #f4efe6; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    
+    /* Header */
+    header { background: #2a1c13; padding: 16px; text-align: center; border-bottom: 1px solid #3d2a1d; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    header h1 { font-size: 1.3rem; color: #c8963e; letter-spacing: 0.5px; }
+    header p { font-size: 0.8rem; color: #a89a8b; margin-top: 2px; }
+
+    /* Content Area */
+    main { flex: 1; overflow-y: auto; padding: 20px; -webkit-overflow-scrolling: touch; }
+    .pillar-card { background: #261910; border: 1px solid #3d2a1d; border-radius: 12px; padding: 18px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+    .pillar-card h2 { color: #d4a359; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .pillar-card p { font-size: 0.9rem; color: #d0c5b6; line-height: 1.4; }
+    
+    /* App Install Banner */
+    #install-banner { background: #c8963e; color: #1b120c; padding: 12px 16px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; text-align: center; margin-bottom: 16px; cursor: pointer; display: none; }
+
+    /* Navigation Bar (App style) */
+    nav { background: #140d08; border-top: 1px solid #2a1c13; display: flex; justify-content: space-around; padding: 10px 0; }
+    nav button { background: none; border: none; color: #8c7b6c; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
+    nav button.active { color: #d4a359; font-weight: bold; }
+    nav button svg { width: 22px; height: 22px; fill: currentColor; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>The 4 Pillars of Ifá</h1>
+    <p>Guided Spiritual Journey</p>
+  </header>
+
+  <main>
+    <div id="install-banner" onclick="installApp()">
+      📱 Tap here to install as a Phone App!
+    </div>
+
+    <div class="pillar-card">
+      <h2>1. Ancestor Healing</h2>
+      <p>Connect with your roots, set up an ancestor altar, and align with those who came before you to transform your lineage.</p>
+    </div>
+
+    <div class="pillar-card">
+      <h2>2. Daily Rituals</h2>
+      <p>Master libations and daily alignment practices to stay balanced with the natural energies governing each day.</p>
+    </div>
+
+    <div class="pillar-card">
+      <h2>3. Your Orí (Higher Self)</h2>
+      <p>Discover your divine purpose and learn how to align your mind and destiny with your Orí.</p>
+    </div>
+
+    <div class="pillar-card">
+      <h2>4. Divine Energies (Òrìṣà)</h2>
+      <p>Build strong relationships with the Òrìṣà (Obatala, Yemoja, Oshun, Sango, Esu, and more) for guidance and protection.</p>
+    </div>
+  </main>
+
+  <nav>
+    <button class="active">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      Home
+    </button>
+    <button>
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+      Pillars
+    </button>
+    <button>
+      <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      Profile
+    </button>
+  </nav>
+
+  <script>
+    // Register automatic Service Worker for offline capability
+    if ('serviceWorker' in navigator) {
+      const swCode = `
+        self.addEventListener('install', e => e.waitUntil(caches.open('ifa-cache').then(c => c.addAll(['/']))));
+        self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(r => r || fetch(e.request))));
+      `;
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      const swUrl = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(swUrl).catch(() => {});
+    }
+
+    // PWA Install Prompt Handler
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('install-banner').style.display = 'block';
+    });
+
+    function installApp() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          document.getElementById('install-banner').style.display = 'none';
+          deferredPrompt = null;
+        });
+      }
+    }
+  </script>
+</body>
+</html>
