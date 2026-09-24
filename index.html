@@ -1,0 +1,123 @@
+# IFA-PILLAR
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Ifá Pillar Tour 2026</title>
+  
+  <!-- PWA & Mobile Meta Tags -->
+  <meta name="theme-color" content="#1b120c" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Ifá Tour" />
+  
+  <!-- Inline Web App Manifest -->
+  <link rel="manifest" href='data:application/manifest+json,{"name":"Ifá Pillar Tour App","short_name":"Ifá Tour","start_url":"/","display":"standalone","background_color":"#1b120c","theme_color":"#1b120c","description":"Official app for the Ifá Pillar Tour to Kétou","icons":[{"src":"https://via.placeholder.com/192/c8963e/ffffff?text=Ifa","sizes":"192x192","type":"image/png"},{"src":"https://via.placeholder.com/512/c8963e/ffffff?text=Ifa","sizes":"512x512","type":"image/png"}]}' />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: #1b120c; color: #f4efe6; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+    
+    /* Header */
+    header { background: #2a1c13; padding: 16px; text-align: center; border-bottom: 1px solid #3d2a1d; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    header h1 { font-size: 1.3rem; color: #c8963e; letter-spacing: 0.5px; }
+    header p { font-size: 0.8rem; color: #a89a8b; margin-top: 2px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* Content Area */
+    main { flex: 1; overflow-y: auto; padding: 20px; -webkit-overflow-scrolling: touch; }
+    .pillar-card { background: #261910; border: 1px solid #3d2a1d; border-radius: 12px; padding: 18px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+    .pillar-card h2 { color: #d4a359; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .pillar-card p { font-size: 0.9rem; color: #d0c5b6; line-height: 1.4; }
+    
+    /* Buttons & Banners */
+    #install-banner { background: #c8963e; color: #1b120c; padding: 12px 16px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; text-align: center; margin-bottom: 16px; cursor: pointer; display: none; }
+    .register-btn { display: block; width: 100%; background: #d4a359; color: #140d08; text-align: center; padding: 14px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+
+    /* Navigation Bar (App style) */
+    nav { background: #140d08; border-top: 1px solid #2a1c13; display: flex; justify-content: space-around; padding: 10px 0; }
+    nav button { background: none; border: none; color: #8c7b6c; font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
+    nav button.active { color: #d4a359; font-weight: bold; }
+    nav button svg { width: 22px; height: 22px; fill: currentColor; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Ifá Pillar Tour</h1>
+    <p>Kétou Pilgrimage 2026</p>
+  </header>
+
+  <main>
+    <div id="install-banner" onclick="installApp()">
+      📱 Tap here to install the Tour App!
+    </div>
+
+    <div class="pillar-card">
+      <h2>📍 The Destination: Kétou</h2>
+      <p>Join us in 2026 for a life-changing pilgrimage to the sacred city of Kétou, Benin. Connect deeply with your ancestral roots and experience authentic Ifá traditions at the source.</p>
+    </div>
+
+    <div class="pillar-card">
+      <h2>🗺️ Sacred Itinerary</h2>
+      <p>Experience guided visits to historical shrines, immersive cultural rituals, and exclusive learning sessions with esteemed Babalawos and Iyanifas.</p>
+    </div>
+
+    <div class="pillar-card">
+      <h2>✈️ Travel & Accommodations</h2>
+      <p>Your journey is fully supported. Tour packages include secure ground transportation, comfortable local lodging, and traditional meals throughout the pilgrimage.</p>
+    </div>
+
+    <div class="pillar-card">
+      <h2>🎟️ Reserve Your Spot</h2>
+      <p>Spaces for the 2026 tour are highly limited to preserve the intimacy of the spiritual experience. Secure your place today.</p>
+      <a href="#" class="register-btn">Register for the Tour</a>
+    </div>
+  </main>
+
+  <nav>
+    <button class="active">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      Home
+    </button>
+    <button>
+      <svg viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+      Itinerary
+    </button>
+    <button>
+      <svg viewBox="0 0 24 24"><path d="M22 10V6a2 2 0 0 0-2-2H4c-1.1 0-1.99.89-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2zm-2 7.74V18H4v-1.74A3.99 3.99 0 0 0 5.99 13 3.99 3.99 0 0 0 4 9.74V8h16v1.74c-1.9 1.15-1.9 3.86 0 5.01z"/></svg>
+      Tickets
+    </button>
+  </nav>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      const swCode = `
+        self.addEventListener('install', e => e.waitUntil(caches.open('ifa-cache').then(c => c.addAll(['/']))));
+        self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(r => r || fetch(e.request))));
+      `;
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      const swUrl = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(swUrl).catch(() => {});
+    }
+
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('install-banner').style.display = 'block';
+    });
+
+    function installApp() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          document.getElementById('install-banner').style.display = 'none';
+          deferredPrompt = null;
+        });
+      }
+    }
+  </script>
+</body>
+</html>
+
